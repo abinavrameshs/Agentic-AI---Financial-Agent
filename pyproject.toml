@@ -1,0 +1,19 @@
+[project]
+name = "Agentic-AI-Financial-Agent"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Abinav Ramesh", email = "abinavrameshs@gmail.com"},
+]
+dependencies = ["phidata>=2.7.10", "python-dotenv>=1.0.1", "yfinance>=0.2.53", "packaging>=24.2", "duckduckgo-search>=7.4.2", "fastapi>=0.115.8", "uvicorn>=0.34.0", "groq>=0.18.0", "openai>=1.63.0", "python-multipart>=0.0.20"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "GNU"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
