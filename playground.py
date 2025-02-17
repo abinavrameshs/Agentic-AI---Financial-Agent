@@ -1,17 +1,18 @@
-from phi.agent import Agent
-from phi.model.groq import Groq
-from phi.tools.yfinance import YFinanceTools
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.playground import Playground, serve_playground_app
+from agno.agent import Agent
+from agno.models.groq import Groq
+from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.playground import Playground, serve_playground_app
 
 from dotenv import load_dotenv
+
 load_dotenv()
 # websearch agent
 websearch_agent = Agent(
     name="Web Search Agent",
     role="Search the web for the information",
-    model=Groq(id = "llama-3.3-70b-versatile"),
-    tools=[DuckDuckGo()],
+    model=Groq(id="llama-3.3-70b-versatile"),
+    tools=[DuckDuckGoTools()],
     instructions=["Always include sources"],
     show_tool_calls=True,
     markdown=True,
@@ -21,7 +22,7 @@ websearch_agent = Agent(
 
 financial_agent = Agent(
     name="Finance AI Agent",
-    model=Groq(id = "llama-3.3-70b-versatile"),
+    model=Groq(id="llama-3.3-70b-versatile"),
     tools=[
         YFinanceTools(
             stock_price=True,
@@ -38,4 +39,4 @@ financial_agent = Agent(
 app = Playground(agents=[financial_agent, websearch_agent]).get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True) 
+    serve_playground_app("playground:app", reload=True)
